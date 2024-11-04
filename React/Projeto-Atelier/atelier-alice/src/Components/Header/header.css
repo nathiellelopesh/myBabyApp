@@ -1,0 +1,34 @@
+header {
+    width: 100%;
+    background-color: var(--mainColor);
+    font-family: var(--fontFamilySecondary);
+    color: #fff;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    flex: 1;
+}
+
+.header-title > img {
+    height: 100px;
+}
+
+.header-title {
+    font-weight: 600;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.header-nav {
+    padding: 0 0 8px 25px;
+}
+
+.header-nav > a {
+    padding: 0 10px;
+}

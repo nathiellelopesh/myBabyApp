@@ -1,0 +1,12 @@
+:root {
+  --fontFamilyPrincipal: "Afacad Flux", sans-serif;
+  --fontFamilySecondary: "Playfair Display", serif;
+  --mainColor: #0b3874;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

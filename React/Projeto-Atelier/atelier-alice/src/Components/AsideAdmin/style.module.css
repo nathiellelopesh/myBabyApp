@@ -1,0 +1,18 @@
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+
+}
+
+aside > div {
+    padding: 25px 20px;
+    width: 150px;
+    text-align: center;
+}
+
+p {
+    color: #fff;
+}

@@ -1,0 +1,86 @@
+.ProductInformation {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.imagesProduct {
+    display: flex;
+    margin-right: 20px;
+}
+
+.smallImg {
+    display: flex;
+    flex-direction: column;
+}
+
+.smallImg > img {
+    height: 200px;
+    width: auto;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.bigImg {
+    height: 600px;
+    width: auto;
+    border: 1px solid #ccc;
+}
+
+.details {
+    flex: 2;
+    padding: 10px;
+}
+
+.title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.description {
+    font-size: 1.5rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.pix {
+    color: #08b949;
+    font-weight: bold;
+}
+
+button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: var(--mainColor);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #25D366;
+    transition: background-color 0.3s ease;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
