@@ -2,11 +2,14 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { Alert, Grid, Snackbar } from './components';
 import { useTranslation } from 'react-i18next';
 import { createClient } from '@supabase/supabase-js';
+import { ThemeProvider, useMediaQuery } from '@mui/material';
+
 
 import duration from 'dayjs/plugin/duration';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import dayjs from 'dayjs';
+import { darkTheme, lightTheme } from './theme';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -26,6 +29,8 @@ const AppProvider = ({ children }) => {
     const [alertMessage, setAlertMessage] = useState("");
     const [alertSeverity, setAlertSeverity] = useState("");
     const [alertVariant, setAlertVariant] = useState(null);
+
+    const darkTheme = useMediaQuery('(prefers-color-scheme: dark)');
 
     
     const changeLanguage = (lang) => {
@@ -75,28 +80,30 @@ const AppProvider = ({ children }) => {
     return (
         <div className="app-background">
             <AppContext.Provider value={sharedState}>
-            {children}
-            <Snackbar
-                autoHideDuration={timeoutDuration}
-                onClose={handleClose}
-                open={snackOpen}
-                message={snackMessage}
-            />
-            { alertMessage 
-            ?   <Grid container={true}
-                    sx={{
-                        position: 'absolute',
-                        left: 0,
-                        bottom: 0,
-                        width: '100%',
-                        padding: 2
-                    }}
-                >
-                    <Grid item={true} size={{ xs: 12 }}>
-                        <Alert variant={alertVariant} severity={alertSeverity}>{alertMessage}</Alert>
-                    </Grid>
-                </Grid>
-            : null}
+                <ThemeProvider theme={darkTheme ? darkTheme : lightTheme}>
+                    {children}
+                    <Snackbar
+                        autoHideDuration={timeoutDuration}
+                        onClose={handleClose}
+                        open={snackOpen}
+                        message={snackMessage}
+                    />
+                    { alertMessage 
+                    ?   <Grid container={true}
+                            sx={{
+                                position: 'absolute',
+                                left: 0,
+                                bottom: 0,
+                                width: '100%',
+                                padding: 2
+                            }}
+                        >
+                            <Grid item={true} size={{ xs: 12 }}>
+                                <Alert variant={alertVariant} severity={alertSeverity}>{alertMessage}</Alert>
+                            </Grid>
+                        </Grid>
+                    : null}
+            </ThemeProvider>
             </AppContext.Provider>
         </div>
     );

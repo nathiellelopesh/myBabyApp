@@ -2,13 +2,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AppBar, Button, Diaper, Eat, Grid, Sleep } from "../components";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../Context";
-import { drop, get, save, update } from "../services/database";
+import { drop, get, save, update } from "../services/supabase";
 import { getTitle, validateFields } from "../utils/action";
+//import { getUser } from "../utils/core";
 
 const Form: React.FC = () => {
     const navigate = useNavigate()
     const {translate, showAlertMessage} = useAppContext()
-
 
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({})
@@ -32,8 +32,8 @@ const Form: React.FC = () => {
 
     const loadData = async(id) => {
         if(id) {
-            const d = get(id);
-            setData(d)
+            const result = await get("item", id);
+            setData(result)
         }
     }
 
@@ -68,14 +68,15 @@ const Form: React.FC = () => {
                     type='submit'
                     fullWidth
                     variant="contained"
-                    onClick={() => {
+                    onClick={async() => {
                         try{
                             const fields = validateFields(data, actionType);
                             if (fields.length === 0) {
                                 if(id){
-                                    update(data, id);
+                                    await update("item", data, id);
                                 }else{
-                                    save(data);
+                                    //data.user_id = getUser().id
+                                    await save("item", data);
                                 }
                                 showAlertMessage(`Item ${id ? "editado" : "criado"} com sucesso!!!`, "success");                                
                                 navigate("/");
@@ -98,3 +99,4 @@ const Form: React.FC = () => {
 };
 
 export default Form;
+//

@@ -8,15 +8,16 @@ import { useTheme } from "@mui/material/styles";
 import { ACTIONS } from "../constants/actions";
 import CardNewItem from "../components/custom/cardNewItem";
 import { useEffect, useState } from "react";
+import { list } from "../services/database";
 
 const Home: React.FC = () => {
     const [data, setData] = useState([])
     const navigate = useNavigate();
     const theme = useTheme()
 
-    //pra carregar no localstorage
-     const loadData = () => {
-        const d = JSON.parse(localStorage.getItem("items"));
+    //pra carregar do supabase
+    const loadData = async () => {
+        const d = await list("item")
         if(d){
             setData(d)
         }
